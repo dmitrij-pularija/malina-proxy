@@ -6,7 +6,7 @@ const app = express();
 app.use(
   '/*',
   createProxyMiddleware({
-    target: 'http://167.99.246.103',
+    target: 'http://167.99.246.103:8080',
     changeOrigin: true,
   })
 );
