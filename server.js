@@ -14,7 +14,9 @@ app.use(
 );
 
 app.ws('/*', (ws, req) => {
-  const target = 'ws://167.99.246.103:8080';  
+  console.log('WebSocket connection established');
+
+  const target = 'ws://167.99.246.103:8080';
   const wsProxy = new WebSocket(target);
 
   wsProxy.on('message', (data) => {
@@ -27,6 +29,10 @@ app.ws('/*', (ws, req) => {
 
   ws.on('close', () => {
     wsProxy.close();
+  });
+
+  wsProxy.on('error', (error) => {
+    console.error('WebSocket proxy error:', error);
   });
 });
 
